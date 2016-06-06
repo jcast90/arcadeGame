@@ -81,6 +81,38 @@ var Engine = (function(global) {
     function update(dt) {
         updateEntities(dt);
         // checkCollisions();
+        lanes.forEach(function(lane) {
+            if( isClear(lane) ) {
+                maybeAddEnemyToLane(lane);
+            }
+        });
+    }
+
+    // Returns true if the lane is clear, or false otherwise
+    function isClear(lane) {
+         // look at each enemy, if not in x position, spawn new enemy, otherwise nothing.
+        var clear = true;
+        allEnemies.forEach(function(enemy) {
+            // check enemy.x and .y to see if it's in the lane's starting position
+            // if it is, set clear = false
+            if(enemy.x < 101 + Math.random() * 505 && enemy.y === lane.number * 83 - 15){
+                clear = false;
+            };
+            
+
+        });
+        return clear;
+    }
+
+    // Adds an enemy to the given lane with some probability.
+    function maybeAddEnemyToLane(lane) {
+        // generate a random number between 0 and 1
+        if (Math.random() <= lane.probability && allEnemies.length < 9){
+            var newEnemy = new Enemy(lane.number, lane.speed);
+            allEnemies.push(newEnemy); 
+        }     
+
+     
     }
 
     /* This is called by the update function and loops through all of the

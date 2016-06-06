@@ -1,19 +1,17 @@
 // Enemies our player must avoid
 
-
-
-
 var Enemy = function(startY, speed) {
     // Variables applied to each of our instances go here,
     // we've provided one for you to get started
-    this.x = 0 * 101;
+    this.x = -1 * 101;
     this.y = startY * 83 - 15;
-    this.s = speed * 4/1000;
+    this.s = speed;
 
     // The image/sprite for our enemies, this uses
     // a helper we've provided to easily load images
     this.sprite = 'images/enemy-bug.png';
 };
+
 
 // Update the enemy's position, required method for game
 // Parameter: dt, a time delta between ticks
@@ -22,8 +20,13 @@ Enemy.prototype.update = function(dt) {
     // which will ensure the game runs at the same speed for
     // all computers.
     // do somethimg with this .speed
-    this.x++;
-    this.s++;
+    this.x = this.x + this.s * dt;
+   
+   if (this.x > 505){
+    allEnemies.splice(allEnemies.indexOf(this), 1);
+   };
+
+    
 };
 
 // Draw the enemy on the screen, required method for game
@@ -31,31 +34,67 @@ Enemy.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
 
-var newEnemy = new Enemy(1);
-
-var newEnemy2 = new Enemy(2);
-
-var newEnemy3 = new Enemy(3)
-
-var allEnemies = [newEnemy, newEnemy2, newEnemy3];
-
-var Player = function(){
-    
-};
-
-Player.prototype.update = function(){};
-Player.prototype.render = function(){};
-Player.prototype.handleInput = function(){};
-var player = new Player();
 // Now write your own player class
+var Player = function(){
+    this.x = 200;
+    this.y = 400;
+    
+    this.sprite = 'images/char-boy.png';
+};
 // This class requires an update(), render() and
 // a handleInput() method.
+Player.prototype.update = function(){
 
+    
+}
+Player.prototype.render = function(){
+    ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
+};
+Player.prototype.handleInput = function(key){
 
-// Now instantiate your objects.
+    if (key === "left") {
+        if(this.x -101 > -20){
+            this.x = this.x - 100;
+        }
+    } else if(key === "right") {
+        if(this.x + 101 < 500) {
+            this.x = this.x + 100;
+        }
+    } else if(key === "up") {
+        this.y = this.y - 83;
+        if(this.y < 0) {
+            this.y = 300;
+        }
+    } else if (key === "down") {
+        if(this.y + 83 < 404) {
+        this.y = this.y + 83;
+        }
+    }
+};
+
+var player = new Player();
+
 // Place all enemy objects in an array called allEnemies
-// Place the player object in a variable called player
+var allEnemies = [];
 
+// All the lanes, from top to bottom. Top is 1, bottom is 3.
+var lanes = [
+    {
+        number: 1,
+        probability: 0.7,
+        speed: Math.random() * 40 + 60,
+    },
+    {
+        number: 2,
+        probability: 0.5,
+        speed: Math.random() * 40 + 60,
+    },
+    {
+        number: 3,
+        probability: 0.3,
+        speed: Math.random() * 40 + 60,
+    },
+];
 
 
 // This listens for key presses and sends the keys to your
