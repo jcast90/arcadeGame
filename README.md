@@ -1,6 +1,9 @@
 frontend-nanodegree-arcade-game
 ===============================
+To launch the game follow these instructions:
+1.Download file
+2.Unzip
+3.Open index.html
 
-Students should use this [rubric](https://www.udacity.com/course/viewer/#!/c-nd001/l-2696458597/m-2687128535) for self-checking their submission.
+Once open, use the arrow keys to move player and avoid getting run over by the bugs!!
 
-For detailed instructions on how to get started, check out this [guide](https://docs.google.com/document/d/1v01aScPjSWCCWQLIpFqvg3-vXLH2e8_SZQKC8jNO0Dc/pub?embedded=true).
