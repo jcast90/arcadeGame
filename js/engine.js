@@ -86,6 +86,7 @@ var Engine = (function(global) {
                 maybeAddEnemyToLane(lane);
             }
         });
+
     }
 
     // Returns true if the lane is clear, or false otherwise
@@ -103,6 +104,8 @@ var Engine = (function(global) {
         });
         return clear;
     }
+
+   
 
     // Adds an enemy to the given lane with some probability.
     function maybeAddEnemyToLane(lane) {

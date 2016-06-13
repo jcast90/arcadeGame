@@ -6,6 +6,7 @@ var Enemy = function(startY, speed) {
     this.x = -1 * 101;
     this.y = startY * 83 - 15;
     this.s = speed;
+    
 
     // The image/sprite for our enemies, this uses
     // a helper we've provided to easily load images
@@ -26,6 +27,7 @@ Enemy.prototype.update = function(dt) {
     allEnemies.splice(allEnemies.indexOf(this), 1);
    };
 
+  
     
 };
 
@@ -35,21 +37,53 @@ Enemy.prototype.render = function() {
 };
 
 // Now write your own player class
+
+
 var Player = function(){
     this.x = 200;
     this.y = 400;
-    
     this.sprite = 'images/char-boy.png';
+
 };
 // This class requires an update(), render() and
 // a handleInput() method.
 Player.prototype.update = function(){
+    this.x = this.x;
+    this.y = this.y;
+//calls collision detection function
+    this.collisionCheck();
 
+    if (this.y < 10){
     
-}
+    this.positionReset();
+    
+    
+   }
+    
+};
+//checks to see if player and enemy collide, if so, then reset player
+Player.prototype.collisionCheck = function(){
+    for (var i = 0; i < allEnemies.length; i++){
+            if(Math.abs(player.x - allEnemies[i].x) < 30 && Math.abs(player.y - allEnemies[i].y < 30)){
+                this.positionReset();
+            }
+        }
+};
+
+// resets player position
+Player.prototype.positionReset = function(){
+    this.x = 200;
+    this.y = 400;
+
+};
+
+//draws character
 Player.prototype.render = function(){
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
+
 };
+
+//player controls
 Player.prototype.handleInput = function(key){
 
     if (key === "left") {
@@ -81,18 +115,18 @@ var allEnemies = [];
 var lanes = [
     {
         number: 1,
-        probability: 0.7,
-        speed: Math.random() * 40 + 60,
+        probability: 0.9,
+        speed: Math.random() * 80 + 100,
     },
     {
         number: 2,
         probability: 0.5,
-        speed: Math.random() * 40 + 60,
+        speed: Math.random() * 60 + 150,
     },
     {
         number: 3,
-        probability: 0.3,
-        speed: Math.random() * 40 + 60,
+        probability: 0.8,
+        speed: Math.random() * 70 + 100,
     },
 ];
 
