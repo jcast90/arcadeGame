@@ -13,7 +13,6 @@
  * the canvas' context (ctx) object globally available to make writing app.js
  * a little simpler to work with.
  */
-
 var Engine = (function(global) {
     /* Predefine the variables we'll be using within this scope,
      * create the canvas element, grab the 2D context for that canvas
@@ -82,7 +81,7 @@ var Engine = (function(global) {
         updateEntities(dt);
         // checkCollisions();
         lanes.forEach(function(lane) {
-            if( isClear(lane) ) {
+            if (isClear(lane)) {
                 maybeAddEnemyToLane(lane);
             }
         });
@@ -91,31 +90,31 @@ var Engine = (function(global) {
 
     // Returns true if the lane is clear, or false otherwise
     function isClear(lane) {
-         // look at each enemy, if not in x position, spawn new enemy, otherwise nothing.
+        // look at each enemy, if not in x position, spawn new enemy, otherwise nothing.
         var clear = true;
         allEnemies.forEach(function(enemy) {
             // check enemy.x and .y to see if it's in the lane's starting position
             // if it is, set clear = false
-            if(enemy.x < 101 + Math.random() * 505 && enemy.y === lane.number * 83 - 15){
+            if (enemy.x < 101 + Math.random() * 505 && enemy.y === lane.number * 83 - 15) {
                 clear = false;
             };
-            
+
 
         });
         return clear;
     }
 
-   
+
 
     // Adds an enemy to the given lane with some probability.
     function maybeAddEnemyToLane(lane) {
         // generate a random number between 0 and 1
-        if (Math.random() <= lane.probability && allEnemies.length < 9){
+        if (Math.random() <= lane.probability && allEnemies.length < 9) {
             var newEnemy = new Enemy(lane.number, lane.speed);
-            allEnemies.push(newEnemy); 
-        }     
+            allEnemies.push(newEnemy);
+        }
 
-     
+
     }
 
     /* This is called by the update function and loops through all of the
@@ -143,12 +142,12 @@ var Engine = (function(global) {
          * for that particular row of the game level.
          */
         var rowImages = [
-                'images/water-block.png',   // Top row is water
-                'images/stone-block.png',   // Row 1 of 3 of stone
-                'images/stone-block.png',   // Row 2 of 3 of stone
-                'images/stone-block.png',   // Row 3 of 3 of stone
-                'images/grass-block.png',   // Row 1 of 2 of grass
-                'images/grass-block.png'    // Row 2 of 2 of grass
+                'images/water-block.png', // Top row is water
+                'images/stone-block.png', // Row 1 of 3 of stone
+                'images/stone-block.png', // Row 2 of 3 of stone
+                'images/stone-block.png', // Row 3 of 3 of stone
+                'images/grass-block.png', // Row 1 of 2 of grass
+                'images/grass-block.png' // Row 2 of 2 of grass
             ],
             numRows = 6,
             numCols = 5,
@@ -182,11 +181,13 @@ var Engine = (function(global) {
         /* Loop through all of the objects within the allEnemies array and call
          * the render function you have defined.
          */
+
         allEnemies.forEach(function(enemy) {
             enemy.render();
         });
 
         player.render();
+
     }
 
     /* This function does nothing but it could have been a good place to
