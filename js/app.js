@@ -63,7 +63,7 @@ Player.prototype.update = function() {
 //checks to see if player and enemy collide, if so, then reset player
 Player.prototype.collisionCheck = function() {
     for (var i = 0; i < allEnemies.length; i++) {
-        if (Math.abs(player.x - allEnemies[i].x) < 30 && Math.abs(player.y - allEnemies[i].y < 30)) {
+        if (Math.abs(this.x - allEnemies[i].x) < 30 && Math.abs(this.y - allEnemies[i].y < 30)) {
             this.positionReset();
         }
     }

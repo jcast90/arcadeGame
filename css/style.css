@@ -1,3 +1,18 @@
 body {
     text-align: center;
+    background: gray;
+}
+
+.u-logo {
+	float: left;
+	padding: 0px;
+	margin-bottom:0px;
+}
+h1 {
+	color: orange;
+	font: "bold 33px serif";
+}
+h2 {
+	color: orange;
+	font: "bold 33px serif";
 }
